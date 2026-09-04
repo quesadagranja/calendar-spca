@@ -191,7 +191,7 @@ After fitting, the estimator reports reconstruction and structural diagnostics f
 
 Explained variance is
 
-$$ \operatorname{EV} = 1-\frac{\lVert X_c-UV^\top\rVert_F^2}{\lVert X_c\rVert_F^2}. $$
+$$ \mathrm{EV} = 1-\frac{\lVert X_c-UV^\top\rVert_F^2}{\lVert X_c\rVert_F^2}. $$
 
 Conditional component contribution is evaluated as the increase in squared reconstruction error obtained by deleting one fitted rank-one term while keeping the remaining fitted terms fixed.
 
@@ -207,7 +207,7 @@ $$
 
 For each component,
 
-$$ \operatorname{RTV}(v_k) = \frac{\lVert D_Gv_k\rVert_1}{\lVert v_k\rVert_1}. $$
+$$ \mathrm{RTV}(v_k) = \frac{\lVert D_Gv_k\rVert_1}{\lVert v_k\rVert_1}. $$
 
 Lower values indicate smaller loading variation across neighbouring calendar positions.
 
