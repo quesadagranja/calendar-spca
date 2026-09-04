@@ -24,8 +24,10 @@ results/
 outputs/
 **/outputs/
 
-# Large local data
+# Large or generated local data
 *.npy
 *.npz
 *.memmap
 *.parquet
+*.bin
+*.rds
