@@ -1,0 +1,38 @@
+{
+  "dataset": "goiener",
+  "calendar_shape": [24, 7, 52],
+  "order": "F",
+  "n_components": 15,
+  "input_layout": {
+    "kind": "metadata_plus_features",
+    "imputed_column": 2,
+    "max_imputed": 72,
+    "feature_start": 3,
+    "feature_count": 8736,
+    "expected_rows_after_filter": 87187
+  },
+  "spca": {
+    "implementation": "Zou et al. arrayspc-style alternating SPCA",
+    "selected_gamma": 0.02,
+    "selection_sample_size": 5000,
+    "selection_sample_seed": 111,
+    "max_iter": 200,
+    "convergence_tolerance": 0.001
+  },
+  "spca_tv": {
+    "implementation": "neurospin/pylearn-parsimony PCAL1L2TV",
+    "commit": "15eb99bc19a51a3e350901fdb1c90e7e68591640",
+    "selected_alpha": 1.5,
+    "selection_sample_size": 5000,
+    "base_fractions_of_l1_max": {
+      "l1": 0.05,
+      "l2": 1.0,
+      "ltv": 0.10
+    },
+    "eps": 1e-5,
+    "max_iter": 100,
+    "inner_eps": 1e-5,
+    "inner_max_iter": 50000,
+    "tau": 0.2
+  }
+}
