@@ -91,13 +91,7 @@ $$
 
 The fitted factors minimize
 
-$$
-\frac12\lVert X_c-UV^\top\rVert_F^2
-+
-\lambda_1\lVert V\rVert_{1,1}
-+
-\lambda_{\mathrm{TV}}\lVert D_GV\rVert_{1,1},
-$$
+$$ \frac12\lVert X_c-UV^\top\rVert_F^2 + \lambda_1\lVert V\rVert_{1,1} + \lambda_{\mathrm{TV}}\lVert D_GV\rVert_{1,1}, $$
 
 subject to unit Euclidean norm for each active score column,
 
@@ -126,14 +120,7 @@ The fitted score columns therefore maintain unit Euclidean norm throughout the s
 
 For fixed `U`, the loading subproblem is convex:
 
-$$
-\min_V
-\frac12\lVert X_c-UV^\top\rVert_F^2
-+
-\lambda_1\lVert V\rVert_{1,1}
-+
-\lambda_{\mathrm{TV}}\lVert D_GV\rVert_{1,1}.
-$$
+$$ \min_V \frac12\lVert X_c-UV^\top\rVert_F^2 + \lambda_1\lVert V\rVert_{1,1} + \lambda_{\mathrm{TV}}\lVert D_GV\rVert_{1,1}. $$
 
 Its smooth gradient is
 
