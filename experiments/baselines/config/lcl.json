@@ -1,0 +1,34 @@
+{
+  "dataset": "lcl",
+  "calendar_shape": [48, 7, 52],
+  "order": "F",
+  "n_components": 15,
+  "input_layout": {
+    "kind": "feature_matrix",
+    "feature_count": 17472,
+    "expected_rows": 5359
+  },
+  "spca": {
+    "implementation": "Zou et al. arrayspc-style alternating SPCA",
+    "selected_gamma": 0.05,
+    "selection_sample_size": 5359,
+    "max_iter": 200,
+    "convergence_tolerance": 0.001
+  },
+  "spca_tv": {
+    "implementation": "neurospin/pylearn-parsimony PCAL1L2TV",
+    "commit": "15eb99bc19a51a3e350901fdb1c90e7e68591640",
+    "selected_alpha": 0.5,
+    "selection_sample_size": 5359,
+    "base_fractions_of_l1_max": {
+      "l1": 0.05,
+      "l2": 1.0,
+      "ltv": 0.10
+    },
+    "eps": 1e-5,
+    "max_iter": 100,
+    "inner_eps": 1e-5,
+    "inner_max_iter": 50000,
+    "tau": 0.2
+  }
+}
