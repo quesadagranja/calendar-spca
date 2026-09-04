@@ -1,0 +1,35 @@
+{
+  "calendar_shape": [24, 7, 52],
+  "order": "F",
+  "center": true,
+  "input_layout": {
+    "imputed_column": 2,
+    "max_imputed": 72,
+    "feature_start": 3,
+    "feature_count": 8736
+  },
+  "lambda_l1_values": [0.0, 0.05, 0.2, 0.5, 1.0, 3.0, 10.0],
+  "lambda_tv_values": [0.0, 0.05, 0.2, 0.5, 1.0, 3.0, 10.0],
+  "n_components_values": [5, 10, 15, 20, 25, 30],
+  "sample_sizes": [5000, 10000, 15000, 20000],
+  "sample_seeds": [11011, 22022, 33033, 44044, 55055],
+  "initialization_base_seeds": [111, 222, 333, 444, 555],
+  "model": {
+    "score_solver": "coordinate",
+    "score_sweeps": 10,
+    "score_tolerance": 1e-7,
+    "outer_max_iter": 500,
+    "outer_objective_tolerance": 1e-6,
+    "outer_reconstruction_tolerance": 1e-6,
+    "inner_max_iter": 50000,
+    "inner_check_interval": 25,
+    "epsilon_0": 1e-3,
+    "epsilon_min": 1e-6,
+    "epsilon_rho": 0.75,
+    "initialization": "svd",
+    "svd_power_iterations": 2,
+    "svd_oversamples": 5,
+    "batch_size": 2048,
+    "sparsity_tolerance": 1e-10
+  }
+}
