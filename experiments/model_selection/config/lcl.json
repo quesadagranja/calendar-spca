@@ -1,0 +1,42 @@
+{
+  "dataset": "lcl",
+  "calendar_shape": [48, 7, 52],
+  "order": "F",
+  "center": true,
+  "n_components": 15,
+  "random_state": 111,
+  "input_layout": {
+    "kind": "feature_matrix",
+    "feature_count": 17472,
+    "expected_rows": 5359
+  },
+  "lambda_path": [0.0, 0.05, 0.10, 0.20, 0.25, 0.50, 0.75, 1.00, 1.25, 1.50, 1.75, 2.00, 2.25, 2.50, 3.0, 4.0, 5.0, 7.0, 10.0],
+  "model": {
+    "score_solver": "coordinate",
+    "score_sweeps": 10,
+    "score_tolerance": 1e-7,
+    "outer_max_iter": 1000,
+    "outer_objective_tolerance": 1e-6,
+    "outer_reconstruction_tolerance": 1e-6,
+    "inner_max_iter": 50000,
+    "inner_check_interval": 25,
+    "epsilon_0": 1e-3,
+    "epsilon_min": 1e-6,
+    "epsilon_rho": 0.75,
+    "step_safety": 0.99,
+    "dual_step_scale": 1.0,
+    "loading_collapse_tolerance": 1e-10,
+    "score_collapse_tolerance": 1e-12,
+    "similarity_threshold": 0.995,
+    "condition_threshold": 1e12,
+    "max_reinitializations": 3,
+    "reinit_power_iterations": 5,
+    "initialization": "svd",
+    "svd_power_iterations": 2,
+    "svd_oversamples": 5,
+    "batch_size": 2048,
+    "sparsity_tolerance": 1e-10,
+    "effective_region_min_active_fraction": 0.005,
+    "effective_region_min_l1_fraction": 0.01
+  }
+}
