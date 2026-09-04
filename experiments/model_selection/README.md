@@ -6,9 +6,9 @@ This directory reproduces the objective rank-15 regularization selection used fo
 
 The search is restricted to the diagonal
 
-\[
+$$
 \lambda_1=\lambda_{\mathrm{TV}}=\lambda
-\]
+$$
 
 with the pre-specified 19-point path
 
@@ -28,22 +28,22 @@ Dataset-specific scientific settings are stored in:
 
 For each fitted model,
 
-\[
+$$
 \rho_\lambda=\lVert X_c-UV^\top\rVert_F
-\]
+$$
 
 and
 
-\[
+$$
 \Omega_\lambda
 =\lVert V\rVert_{1,1}+\lVert D_GV\rVert_{1,1}.
-\]
+$$
 
 The discrete L-curve is formed by
 
-\[
+$$
 (\log_{10}\Omega_\lambda,\log_{10}\rho_\lambda).
-\]
+$$
 
 Selection is restricted to completed, converged, full-rank (`K_eff=15`) fits with finite positive `rho` and `omega`. Among eligible interior points, `select_lambda.py` chooses the maximum three-point Menger curvature. Endpoints are not eligible for selection, and an exact curvature tie is resolved in favour of the smaller lambda.
 
