@@ -1,0 +1,4 @@
+{
+  "goiener": "/path/to/goiener_prepared_matrix.npy",
+  "lcl": "/path/to/lcl_prepared_matrix.npy"
+}
