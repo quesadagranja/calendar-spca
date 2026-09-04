@@ -6,21 +6,21 @@ This document summarizes the mathematical formulation and numerical conventions 
 
 Let
 
-\[
+$$
 X \in \mathbb{R}^{N\times M}
-\]
+$$
 
 contain `N` observations and `M` ordered features. Calendar-SPCA assumes that the feature axis can be reshaped into three known periodic coordinates,
 
-\[
+$$
 M=m_1m_2m_3,
-\]
+$$
 
 with calendar tensor shape
 
-\[
+$$
 (m_1,m_2,m_3).
-\]
+$$
 
 The electricity experiments use:
 
@@ -31,9 +31,9 @@ The package supports both NumPy/C and Fortran/R flattening conventions through t
 
 By default, Calendar-SPCA centers each feature across observations. The centered matrix is denoted
 
-\[
+$$
 X_c = X - \mathbf{1}\mu^\top.
-\]
+$$
 
 The implementation evaluates products with `X_c` in row batches and does not require materializing a second centered copy of the complete data matrix.
 
@@ -41,9 +41,9 @@ The implementation evaluates products with `X_c` in row batches and does not req
 
 The feature domain is represented by
 
-\[
+$$
 G=C_{m_1}\square C_{m_2}\square C_{m_3},
-\]
+$$
 
 where every axis is cyclic. Each calendar position therefore has two neighbours along each coordinate. In the hourly representation, for example, the graph connects:
 
@@ -55,21 +55,21 @@ Let `D_G` denote an oriented incidence operator. The implementation stores no sp
 
 For the three-axis product graph, the squared spectral norm is available analytically as
 
-\[
+$$
 \lVert D_G\rVert_2^2
 =
 \sum_{r=1}^{3}\lambda_{\max}(L_{C_{m_r}}),
-\]
+$$
 
 where
 
-\[
+$$
 \lambda_{\max}(L_{C_m})=
 \begin{cases}
 4, & m \text{ even},\\
 2+2\cos(\pi/m), & m \text{ odd}.
 \end{cases}
-\]
+$$
 
 This value is used directly in the primal-dual step-size construction.
 
@@ -77,33 +77,33 @@ This value is used directly in the primal-dual step-size construction.
 
 Calendar-SPCA estimates a rank-`K` representation
 
-\[
+$$
 X_c \approx UV^\top,
-\]
+$$
 
 with
 
-\[
+$$
 U\in\mathbb{R}^{N\times K},
 \qquad
 V\in\mathbb{R}^{M\times K}.
-\]
+$$
 
 The fitted factors minimize
 
-\[
+$$
 \frac12\lVert X_c-UV^\top\rVert_F^2
 +
 \lambda_1\lVert V\rVert_{1,1}
 +
 \lambda_{\mathrm{TV}}\lVert D_GV\rVert_{1,1},
-\]
+$$
 
 subject to unit Euclidean norm for each active score column,
 
-\[
+$$
 \lVert u_k\rVert_2=1.
-\]
+$$
 
 The two structural terms play complementary roles:
 
@@ -126,47 +126,47 @@ The fitted score columns therefore maintain unit Euclidean norm throughout the s
 
 For fixed `U`, the loading subproblem is convex:
 
-\[
+$$
 \min_V
 \frac12\lVert X_c-UV^\top\rVert_F^2
 +
 \lambda_1\lVert V\rVert_{1,1}
 +
 \lambda_{\mathrm{TV}}\lVert D_GV\rVert_{1,1}.
-\]
+$$
 
 Its smooth gradient is
 
-\[
+$$
 \nabla f(V)=V(U^\top U)-X_c^\top U.
-\]
+$$
 
 The nonsmooth terms are handled by a primal-dual three-operator update. The `L1` proximal map is soft thresholding, while the dual variable associated with graph total variation is projected onto
 
-\[
+$$
 [-\lambda_{\mathrm{TV}},\lambda_{\mathrm{TV}}].
-\]
+$$
 
 Let
 
-\[
+$$
 L=\lambda_{\max}(U^\top U).
-\]
+$$
 
 The default steps are constructed from the exact graph norm as
 
-\[
+$$
 \sigma=
 \frac{s_{\mathrm{dual}}}{\lVert D_G\rVert_2},
-\]
+$$
 
 and
 
-\[
+$$
 \tau=
 \frac{s_{\mathrm{step}}}
 {L/2+\sigma\lVert D_G\rVert_2^2},
-\]
+$$
 
 with a safety factor `s_step < 1`. The implementation verifies the corresponding strict convergence inequality before entering the inner iterations.
 
@@ -174,7 +174,7 @@ with a safety factor `s_step < 1`. The implementation verifies the corresponding
 
 The inner tolerance at outer iteration `t` is
 
-\[
+$$
 \varepsilon_t
 =
 \max\left(
@@ -182,7 +182,7 @@ The inner tolerance at outer iteration `t` is
 \varepsilon_0\rho^t
 \right),
 \qquad 0<\rho<1.
-\]
+$$
 
 This schedule gives inexpensive early loading updates and progressively tighter solutions as the alternating procedure approaches a stable factorization.
 
@@ -219,13 +219,13 @@ After fitting, the estimator reports reconstruction and structural diagnostics f
 
 Explained variance is
 
-\[
+$$
 \operatorname{EV}
 =
 1-
 \frac{\lVert X_c-UV^\top\rVert_F^2}
 {\lVert X_c\rVert_F^2}.
-\]
+$$
 
 Conditional component contribution is evaluated as the increase in squared reconstruction error obtained by deleting one fitted rank-one term while keeping the remaining fitted terms fixed.
 
@@ -233,20 +233,20 @@ Conditional component contribution is evaluated as the increase in squared recon
 
 For numerical tolerance `eps`, component sparsity is the fraction of loading entries satisfying
 
-\[
+$$
 |v_{jk}|\leq \text{eps}.
-\]
+$$
 
 ### Calendar coherence
 
 For each component,
 
-\[
+$$
 \operatorname{RTV}(v_k)
 =
 \frac{\lVert D_Gv_k\rVert_1}
 {\lVert v_k\rVert_1}.
-\]
+$$
 
 Lower values indicate smaller loading variation across neighbouring calendar positions.
 
