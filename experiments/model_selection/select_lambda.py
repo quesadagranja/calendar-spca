@@ -30,7 +30,11 @@ def menger_curvature(a: np.ndarray, b: np.ndarray, c: np.ndarray) -> float:
     denominator = ab * bc * ca
     if denominator <= 0:
         return float("nan")
-    twice_area = abs(float(np.cross(b - a, c - a)))
+    ab_vector = b - a
+    ac_vector = c - a
+    twice_area = abs(
+        float(ab_vector[0] * ac_vector[1] - ab_vector[1] * ac_vector[0])
+    )
     return 2.0 * twice_area / denominator
 
 
