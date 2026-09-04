@@ -26,7 +26,19 @@ The same cyclic calendar topology is used to evaluate all loading systems.
 
 ## PCA
 
-PCA is the rank-matched reconstruction reference. It has no regularization parameter. The paper reports the rank-15 explained variance and common calendar RTV for its loading system.
+PCA is the rank-matched reconstruction reference and has no regularization parameter. The paper fit uses scikit-learn randomized PCA with `K=15` and `random_state=111` on the complete prepared matrix.
+
+Install scikit-learn in the main Calendar-SPCA environment and run, for example:
+
+```bash
+python -m pip install scikit-learn
+python experiments/baselines/run_pca.py \
+  --dataset goiener \
+  --data /path/to/goiener_prepared_matrix.npy \
+  --output-dir results/baselines/goiener/pca
+```
+
+The runner stores the rank-15 loading matrix and reports explained variance together with the common calendar RTV. Use `--dataset lcl` for Low Carbon London.
 
 ## SPCA
 
