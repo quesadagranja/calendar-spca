@@ -1,0 +1,9 @@
+# Environment used for the SPCA-TV reference fits.
+# ParsimonY itself must be checked out at the exact commit documented below.
+numpy==1.23.5
+scipy==1.10.1
+scikit-learn==1.2.2
+
+# Required ParsimonY revision:
+# https://github.com/neurospin/pylearn-parsimony
+# commit 15eb99bc19a51a3e350901fdb1c90e7e68591640
