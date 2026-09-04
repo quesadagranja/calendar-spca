@@ -55,11 +55,7 @@ Let `D_G` denote an oriented incidence operator. The implementation stores no sp
 
 For the three-axis product graph, the squared spectral norm is available analytically as
 
-$$
-\lVert D_G\rVert_2^2
-=
-\sum_{r=1}^{3}\lambda_{\max}(L_{C_{m_r}}),
-$$
+$$ \lVert D_G\rVert_2^2 = \sum_{r=1}^{3}\lambda_{\max}(L_{C_{m_r}}). $$
 
 where
 
@@ -91,7 +87,7 @@ $$
 
 The fitted factors minimize
 
-$$ \frac12\lVert X_c-UV^\top\rVert_F^2 + \lambda_1\lVert V\rVert_{1,1} + \lambda_{\mathrm{TV}}\lVert D_GV\rVert_{1,1}, $$
+$$ \frac12\lVert X_c-UV^\top\rVert_F^2 + \lambda_1\lVert V\rVert_{1,1} + \lambda_{\mathrm{TV}}\lVert D_GV\rVert_{1,1}. $$
 
 subject to unit Euclidean norm for each active score column,
 
@@ -143,16 +139,13 @@ $$
 The default steps are constructed from the exact graph norm as
 
 $$
-\sigma=
-\frac{s_{\mathrm{dual}}}{\lVert D_G\rVert_2},
+\sigma=\frac{s_{\mathrm{dual}}}{\lVert D_G\rVert_2},
 $$
 
 and
 
 $$
-\tau=
-\frac{s_{\mathrm{step}}}
-{L/2+\sigma\lVert D_G\rVert_2^2},
+\tau=\frac{s_{\mathrm{step}}}{L/2+\sigma\lVert D_G\rVert_2^2},
 $$
 
 with a safety factor `s_step < 1`. The implementation verifies the corresponding strict convergence inequality before entering the inner iterations.
@@ -161,15 +154,7 @@ with a safety factor `s_step < 1`. The implementation verifies the corresponding
 
 The inner tolerance at outer iteration `t` is
 
-$$
-\varepsilon_t
-=
-\max\left(
-\varepsilon_{\min},
-\varepsilon_0\rho^t
-\right),
-\qquad 0<\rho<1.
-$$
+$$ \varepsilon_t = \max\left(\varepsilon_{\min},\varepsilon_0\rho^t\right), \qquad 0<\rho<1. $$
 
 This schedule gives inexpensive early loading updates and progressively tighter solutions as the alternating procedure approaches a stable factorization.
 
@@ -206,13 +191,7 @@ After fitting, the estimator reports reconstruction and structural diagnostics f
 
 Explained variance is
 
-$$
-\operatorname{EV}
-=
-1-
-\frac{\lVert X_c-UV^\top\rVert_F^2}
-{\lVert X_c\rVert_F^2}.
-$$
+$$ \operatorname{EV} = 1-\frac{\lVert X_c-UV^\top\rVert_F^2}{\lVert X_c\rVert_F^2}. $$
 
 Conditional component contribution is evaluated as the increase in squared reconstruction error obtained by deleting one fitted rank-one term while keeping the remaining fitted terms fixed.
 
@@ -228,12 +207,7 @@ $$
 
 For each component,
 
-$$
-\operatorname{RTV}(v_k)
-=
-\frac{\lVert D_Gv_k\rVert_1}
-{\lVert v_k\rVert_1}.
-$$
+$$ \operatorname{RTV}(v_k) = \frac{\lVert D_Gv_k\rVert_1}{\lVert v_k\rVert_1}. $$
 
 Lower values indicate smaller loading variation across neighbouring calendar positions.
 
