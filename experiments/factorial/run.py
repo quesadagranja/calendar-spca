@@ -71,11 +71,30 @@ def task_name(task: dict[str, Any]) -> str:
     )
 
 
-def build_tasks(config: dict[str, Any], eligible: np.ndarray) -> list[dict[str, Any]]:
+def eligible_indices(base: np.ndarray, config: dict[str, Any]) -> np.ndarray:
+    layout = config["input_layout"]
+    imputed = np.asarray(base[:, int(layout["imputed_column"])])
+    return np.flatnonzero(imputed <= float(layout["max_imputed"]))
+
+
+def sampled_indices(
+    eligible: np.ndarray,
+    sample_seed: int,
+    n_samples: int,
+    max_n: int,
+) -> np.ndarray:
+    """Regenerate the nested master sample for one repetition."""
+
+    rng = np.random.default_rng(int(sample_seed))
+    master = rng.permutation(eligible)[:max_n]
+    return np.asarray(master[:n_samples], dtype=np.int64)
+
+
+def build_tasks(config: dict[str, Any], n_eligible: int) -> list[dict[str, Any]]:
     max_n = max(int(n) for n in config["sample_sizes"])
-    if eligible.size < max_n:
+    if n_eligible < max_n:
         raise ValueError(
-            f"Only {eligible.size:,} eligible rows are available; {max_n:,} are required."
+            f"Only {n_eligible:,} eligible rows are available; {max_n:,} are required."
         )
 
     tasks: list[dict[str, Any]] = []
@@ -83,12 +102,8 @@ def build_tasks(config: dict[str, Any], eligible: np.ndarray) -> list[dict[str, 
         zip(config["sample_seeds"], config["initialization_base_seeds"], strict=True),
         start=1,
     ):
-        rng = np.random.default_rng(int(sample_seed))
-        master = rng.permutation(eligible)[:max_n].astype(np.int64, copy=False)
-
         for n_index, n_samples in enumerate(config["sample_sizes"]):
             n_samples = int(n_samples)
-            sample_indices = master[:n_samples]
             for k_index, n_components in enumerate(config["n_components_values"]):
                 n_components = int(n_components)
                 initialization_seed = int(initialization_base) + 1000 * n_index + k_index
@@ -106,7 +121,6 @@ def build_tasks(config: dict[str, Any], eligible: np.ndarray) -> list[dict[str, 
                                 "lambda_tv": float(lambda_tv),
                                 "lambda_l1_index": l1_index,
                                 "lambda_tv_index": tv_index,
-                                "sample_indices": sample_indices.tolist(),
                             }
                         )
     return tasks
@@ -133,9 +147,17 @@ def fit_one(
 
     base = np.load(data_path, mmap_mode="r")
     layout = config["input_layout"]
+    eligible = eligible_indices(base, config)
+    max_n = max(int(n) for n in config["sample_sizes"])
+    rows = sampled_indices(
+        eligible,
+        int(task["sample_seed"]),
+        int(task["n_samples"]),
+        max_n,
+    )
     matrix = IndexedFeatureMatrix(
         base,
-        np.asarray(task["sample_indices"], dtype=np.int64),
+        rows,
         int(layout["feature_start"]),
         int(layout["feature_count"]),
     )
@@ -241,9 +263,8 @@ def main() -> None:
             f"Prepared matrix has {base.shape[1]} columns; at least {feature_stop} are required."
         )
 
-    imputed = np.asarray(base[:, int(layout["imputed_column"])])
-    eligible = np.flatnonzero(imputed <= float(layout["max_imputed"]))
-    tasks = build_tasks(config, eligible)
+    eligible = eligible_indices(base, config)
+    tasks = build_tasks(config, eligible.size)
     if args.max_tasks is not None:
         tasks = tasks[: max(0, args.max_tasks)]
 
