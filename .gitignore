@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local experiment paths and outputs
+paths.json
+**/paths.json
+results/
+**/results/
+outputs/
+**/outputs/
+
+# Large local data
+*.npy
+*.npz
+*.memmap
+*.parquet
