@@ -170,7 +170,8 @@ def main() -> None:
     if args.check_only:
         return
 
-    np.random.seed(111)
+    random_state = int(settings["random_state"])
+    np.random.seed(random_state)
     model = PCAL1L2TV(
         l1=l1,
         l2=l2,
@@ -198,6 +199,7 @@ def main() -> None:
     metrics.update(
         {
             "dataset": args.dataset,
+            "random_state": random_state,
             "alpha": alpha,
             "l1_max": l1_max,
             "l1": l1,
