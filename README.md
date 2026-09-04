@@ -11,23 +11,15 @@ The method was developed for electricity-consumption profiles with daily, weekly
 
 For a centered data matrix $X_c \in \mathbb{R}^{N\times M}$, Calendar-SPCA estimates
 
-$$
-X_c \approx U V^\top
-$$
+$$ X_c \approx U V^\top $$
 
 through
 
-$$
-\frac{1}{2}\lVert X_c-U V^\top\rVert_F^2
-+ \lambda_1\lVert V\rVert_{1,1}
-+ \lambda_{\mathrm{TV}}\lVert D_GV\rVert_{1,1},
-$$
+$$ \frac{1}{2}\lVert X_c-U V^\top\rVert_F^2 + \lambda_1\lVert V\rVert_{1,1} + \lambda_{\mathrm{TV}}\lVert D_GV\rVert_{1,1}, $$
 
 where $D_G$ is the incidence operator of a cyclic Cartesian-product graph. For the hourly electricity representation used in the paper,
 
-$$
-G=C_{24}\square C_7\square C_{52},
-$$
+$$ G=C_{24}\square C_7\square C_{52}, $$
 
 so 23:00 and 00:00, Sunday and Monday, and week 52 and week 1 are neighbours. The Low Carbon London experiments use the analogous $C_{48}\square C_7\square C_{52}$ graph.
 
