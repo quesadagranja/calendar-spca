@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use Calendar-SPCA, please cite the software release and the accompanying paper."
+title: "Calendar-SPCA"
+abstract: >-
+  Research software for interpretable sparse representation learning on
+  multi-periodic calendar domains using graph total variation on Cartesian
+  products of cyclic graphs.
+type: software
+authors:
+  - family-names: "Quesada-Granja"
+    given-names: "Carlos"
+    affiliation: "University of Alicante"
+version: 1.0.0
+license: BSD-3-Clause
+repository-code: "https://github.com/quesadagranja/calendar-spca"
+keywords:
+  - sparse PCA
+  - graph total variation
+  - calendar structure
+  - periodic data
+  - interpretable representation learning
+preferred-citation:
+  type: article
+  title: "Calendar-SPCA: Interpretable Representation Learning for Multi-Periodic Electricity Consumption Profiles"
+  authors:
+    - family-names: "Quesada-Granja"
+      given-names: "Carlos"
+  year: 2026
