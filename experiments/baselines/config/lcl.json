@@ -18,6 +18,7 @@
   "spca_tv": {
     "implementation": "neurospin/pylearn-parsimony PCAL1L2TV",
     "commit": "15eb99bc19a51a3e350901fdb1c90e7e68591640",
+    "random_state": 111,
     "selected_alpha": 0.5,
     "selection_sample_size": 5359,
     "base_fractions_of_l1_max": {
