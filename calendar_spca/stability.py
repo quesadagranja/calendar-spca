@@ -9,7 +9,7 @@ import numpy as np
 from numpy.typing import ArrayLike, NDArray
 from scipy.optimize import linear_sum_assignment
 
-from .model import CalendarGraphFusedSparsePCA
+from .api import CalendarSPCA
 
 
 @dataclass
@@ -43,14 +43,14 @@ def match_components(reference: ArrayLike, candidate: ArrayLike) -> ComponentMat
 
 
 def fit_restarts(
-    estimator: CalendarGraphFusedSparsePCA,
+    estimator: CalendarSPCA,
     x: ArrayLike,
     *,
     n_restarts: int = 5,
     seeds: Sequence[int] | None = None,
 ) -> tuple[
-    CalendarGraphFusedSparsePCA,
-    list[CalendarGraphFusedSparsePCA],
+    CalendarSPCA,
+    list[CalendarSPCA],
     NDArray[np.float64],
 ]:
     """Fit several initializations and return best model plus stability matrix."""
@@ -63,11 +63,11 @@ def fit_restarts(
     if len(seeds) != n_restarts:
         raise ValueError("seeds must have length n_restarts.")
 
-    models: list[CalendarGraphFusedSparsePCA] = []
+    models: list[CalendarSPCA] = []
     for seed in seeds:
         parameters = estimator.get_params()
         parameters["random_state"] = int(seed)
-        model = CalendarGraphFusedSparsePCA(**parameters)
+        model = CalendarSPCA(**parameters)
         models.append(model.fit(x))
 
     final_objectives = np.array([model.history_[-1].objective for model in models])
