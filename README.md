@@ -74,13 +74,13 @@ python examples/synthetic_demo.py
 
 ## Public API
 
-The recommended estimator name is:
+The estimator is:
 
 ```python
 from calendar_spca import CalendarSPCA
 ```
 
-The descriptive class name `CalendarGraphFusedSparsePCA` is also exported. Utility functions for calendar reshaping, graph operations, component matching, and repeated-fit stability are available from the same package.
+Utility functions for calendar reshaping, graph operations, component matching, and repeated-fit stability are available from the same package.
 
 ## Paper experiments
 
