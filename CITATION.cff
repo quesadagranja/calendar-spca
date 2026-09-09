@@ -25,4 +25,12 @@ preferred-citation:
   authors:
     - family-names: "Quesada-Granja"
       given-names: "Carlos"
+    - family-names: "Castillo-Calzadilla"
+      given-names: "Tony"
+    - family-names: "Rizo-Maestre"
+      given-names: "Carlos"
   year: 2026
+  identifiers:
+    - type: url
+      value: "https://arxiv.org/abs/2609.06060"
+      description: "arXiv:2609.06060"
