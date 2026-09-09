@@ -1,6 +1,6 @@
 # Calendar-SPCA
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22670208.svg)](https://doi.org/10.5281/zenodo.22670208)
+[![DOI](https://zenodo.org/badge/1356849513.svg)](https://zenodo.org/badge/latestdoi/1356849513)
 
 **Calendar-SPCA** is an interpretable sparse representation-learning method for data observed on multiple known periodic axes. It combines sparse principal component analysis with graph total variation on a Cartesian product of cyclic graphs, producing latent factors that are both selective and locally coherent over the calendar domain.
 
