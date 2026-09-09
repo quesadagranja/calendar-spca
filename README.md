@@ -5,7 +5,9 @@
 The method was developed for electricity-consumption profiles with daily, weekly, and annual periodic structure and is described in the manuscript:
 
 > **Calendar-SPCA: Interpretable Representation Learning for Multi-Periodic Electricity Consumption Profiles**  
-> Carlos Quesada-Granja, Tony Castillo-Calzadilla, Carlos Rizo-Maestre, September 2026.
+> Carlos Quesada-Granja, Tony Castillo-Calzadilla, Carlos Rizo-Maestre.  
+> arXiv:2609.06060, 2026.  
+> https://arxiv.org/abs/2609.06060
 
 ## Method at a glance
 
